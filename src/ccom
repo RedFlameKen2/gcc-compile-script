@@ -1,5 +1,15 @@
 #!/bin/bash
 
-g++ $1.cpp -o $1 && chmod +x $1 && ./$1
+
+if [ "$1" == "" ]
+then
+    fname="main"
+else
+    fname=$1
+fi
+    
+
+g++ $fname.cpp -o $fname && chmod +x $fname && ./$fname
+
 
 exit
