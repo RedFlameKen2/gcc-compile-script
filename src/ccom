@@ -1,0 +1,5 @@
+#!/bin/bash
+
+g++ $1.cpp -o $1 && chmod +x $1 && ./$1
+
+exit
