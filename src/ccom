@@ -21,7 +21,7 @@ while [ $# -gt 0 ]; do
 done
 
 
-g++ $fname.cpp -o $fname$file_extension 
+$compiler_bin $fname.cpp -o $fname$file_extension 
 if [ $run_executable == true ]
 then
     chmod +x $fname && ./$fname
