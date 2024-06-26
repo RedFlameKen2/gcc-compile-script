@@ -17,11 +17,12 @@ while [ $# -gt 0 ]; do
         -n | --name) fname=$2 ;;
         -N | --no-run) run_executable=false ;;
     esac
+    shift
 done
 
 
 g++ $fname.cpp -o $fname$file_extension 
-if [ run_executable ]
+if [ $run_executable == true ]
 then
     chmod +x $fname && ./$fname
 fi
