@@ -1,15 +1,29 @@
 #!/bin/bash
 
+fname="main"
+compiler_bin=/bin/g++
+file_extension=""
+run_executable=true
 
-if [ "$1" == "" ]
+winopts(){
+    compiler_bin=/bin/x86_64-w64-mingw32-g++
+    file_extension=".exe"
+    run_executable=false
+}
+
+while [ $# -gt 0 ]; do
+    case $1 in
+        -w | --windows) winopts ;;
+        -n | --name) fname=$2 ;;
+        -N | --no-run) run_executable=false ;;
+    esac
+done
+
+
+g++ $fname.cpp -o $fname$file_extension 
+if [ run_executable ]
 then
-    fname="main"
-else
-    fname=$1
+    chmod +x $fname && ./$fname
 fi
-    
-
-g++ $fname.cpp -o $fname && chmod +x $fname && ./$fname
-
 
 exit
