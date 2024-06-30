@@ -37,7 +37,7 @@ $compiler_bin -o $(basename $fname)$file_extension $basedir/obj/*.o
 # $compiler_bin $fname.cpp -o $fname$file_extension 
 if [ $run_executable == true ]
 then
-    chmod +x $fname && ./$fname
+    chmod +x $(basename $fname) && ./$(basename $fname)
 fi
 
 exit
