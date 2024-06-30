@@ -16,12 +16,25 @@ while [ $# -gt 0 ]; do
         -w | --windows) winopts ;;
         -n | --name) fname=$2 ;;
         -N | --no-run) run_executable=false ;;
+        -o | --objects_dir) objects_dir=$2 ;;
     esac
     shift
 done
 
+basedir=$(dirname $fname)
+if [ -z $objects_dir ]; then
+    objects_dir="$basedir/obj"
+fi
 
-$compiler_bin $fname.cpp -o $fname$file_extension 
+$compiler_bin -c $basedir/*.cpp
+if [ ! -d "$objects_dir" ]; then
+    mkdir $objects_dir
+fi
+mv *.o $objects_dir
+
+$compiler_bin -o $fname$file_extension $basedir/obj/*.o
+
+# $compiler_bin $fname.cpp -o $fname$file_extension 
 if [ $run_executable == true ]
 then
     chmod +x $fname && ./$fname
