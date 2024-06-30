@@ -32,7 +32,7 @@ if [ ! -d "$objects_dir" ]; then
 fi
 mv *.o $objects_dir
 
-$compiler_bin -o $fname$file_extension $basedir/obj/*.o
+$compiler_bin -o $(basename $fname)$file_extension $basedir/obj/*.o
 
 # $compiler_bin $fname.cpp -o $fname$file_extension 
 if [ $run_executable == true ]
