@@ -17,6 +17,7 @@ while [ $# -gt 0 ]; do
     case $1 in
         -w | --windows) winopts ;;
         -n | --name) fname=$2 ;;
+        -d | --dir) basedir=$2 ;;
         -N | --no-run) run_executable=false ;;
         -o | --objects_dir) objects_dir=$2 ;;
     esac
@@ -25,16 +26,22 @@ done
 
 basedir=$(dirname $fname)
 if [ -z $objects_dir ]; then
-    objects_dir="$basedir/obj"
+    objects_dir="obj"
 fi
 
-$compiler_bin -c $basedir/*.cpp
 if [ ! -d "$objects_dir" ]; then
     mkdir $objects_dir
 fi
+
+searchDir=""
+while [ ! "$(ls $basedir/$searchDir)" == "" ]; do
+    $compiler_bin -c $basedir/$searchDir*.cpp
+    searchDir="$searchDir*/"
+done
+
 mv *.o $objects_dir
 
-$compiler_bin -o $(basename $fname)$file_extension $basedir/obj/*.o $flags
+$compiler_bin -o $(basename $fname)$file_extension obj/*.o $flags
 
 # $compiler_bin $fname.cpp -o $fname$file_extension 
 if [ $run_executable == true ]
