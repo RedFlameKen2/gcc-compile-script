@@ -33,7 +33,7 @@ if [ ! -d "$objects_dir" ]; then
     mkdir $objects_dir
 fi
 
-$compiler_bin -c $(find $basedir | grep .cpp)
+$compiler_bin -c "$(find $basedir | grep .cpp)"
 mv *.o $objects_dir
 
 $compiler_bin -o $(basename $fname)$file_extension obj/*.o $flags
