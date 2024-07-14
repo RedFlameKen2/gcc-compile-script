@@ -7,7 +7,7 @@ run_executable=true
 flags=""
 
 winopts(){
-    compiler_bin=/bin/x86_64-w64-mingw32-g++
+    # compiler_bin=/bin/x86_64-w64-mingw32-g++
     file_extension=".exe"
     run_executable=false
     flags="$flags -static-libgcc -static-libstdc++ -static"
