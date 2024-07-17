@@ -7,7 +7,7 @@ run_executable=true
 flags=""
 
 winopts(){
-    # compiler_bin=/bin/x86_64-w64-mingw32-g++
+    compiler_bin=/bin/x86_64-w64-mingw32-g++
     file_extension=".exe"
     run_executable=false
     flags="$flags -static-libgcc -static-libstdc++ -static"
@@ -20,6 +20,7 @@ while [ $# -gt 0 ]; do
         -d | --dir) basedir=$2 ;;
         -N | --no-run) run_executable=false ;;
         -o | --objects_dir) objects_dir=$2 ;;
+        -g | --debug) flags="$flags -g" ;;
         -l | --lncurses) flags="$flags -lncurses" ;;
     esac
     shift
