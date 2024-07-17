@@ -20,7 +20,7 @@ while [ $# -gt 0 ]; do
         -d | --dir) basedir=$2 ;;
         -N | --no-run) run_executable=false ;;
         -o | --objects_dir) objects_dir=$2 ;;
-        -g | --debug) flags="$flags -g" ;;
+        -g | --debug) flags="$flags --debug" ;;
         -l | --lncurses) flags="$flags -lncurses" ;;
     esac
     shift
